@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Packing List - 匯入清單</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .logo {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      color: #4E7D96;
+      font-size: 24px;
+      margin: 0 0 8px;
+    }
+    p {
+      color: #666;
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 8px 0 24px;
+    }
+    .btn {
+      display: block;
+      padding: 14px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 8px 0;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-open {
+      background: #fd844c;
+      color: white;
+    }
+    .btn-ios {
+      background: #4E7D96;
+      color: white;
+    }
+    .btn-android {
+      background: #34A853;
+      color: white;
+    }
+    .loading {
+      color: #999;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+    .fallback {
+      display: none;
+    }
+    .show { display: block; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">🧳</div>
+    <h1>正在開啟 Travel Packing List</h1>
+    <p>嘗試開啟 App 匯入清單...</p>
+    <div class="loading" id="loading">如果沒有自動開啟，請點擊下方按鈕</div>
+    <div class="fallback" id="fallback">
+      <p>請先下載 App，再點擊一鍵匯入：</p>
+      <a class="btn btn-open" id="openLink" href="#">🔄 再試一次開啟 App</a>
+      <a class="btn btn-ios" href="https://apps.apple.com/us/app/travel-luggage-packing-list/id6749501943">
+        📱 下載 iOS 版
+      </a>
+      <a class="btn btn-android" href="https://play.google.com/store/apps/details?id=com.travel.luggagelist&pcampaignid=web_share">
+        📱 下載 Android 版
+      </a>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const gistId = params.get('gistId');
+      const fallback = document.getElementById('fallback');
+      const loading = document.getElementById('loading');
+      const openLink = document.getElementById('openLink');
+
+      if (gistId) {
+        const deepLink = 'travelpack://import?gistId=' + encodeURIComponent(gistId);
+        openLink.href = deepLink;
+
+        // 嘗試打開 App
+        window.location.href = deepLink;
+
+        // 如果 2 秒後 App 沒打開，顯示下載按鈕
+        setTimeout(function() {
+          loading.style.display = 'none';
+          fallback.classList.add('show');
+        }, 2000);
+      } else {
+        document.querySelector('h1').textContent = '連結無效';
+        document.querySelector('p').textContent = '缺少匯入參數，請重新分享';
+      }
+    })();
+  </script>
+</body>
+</html>
