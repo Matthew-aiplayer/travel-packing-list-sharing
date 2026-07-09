@@ -47,31 +47,24 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 14px 24px;
+      gap: 8px;
+      padding: 12px 20px;
       border-radius: 12px;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
-      margin: 8px 0;
+      margin: 6px 0;
       transition: opacity 0.2s;
       width: 100%;
       box-sizing: border-box;
     }
     .btn:hover { opacity: 0.85; }
-    .btn-open {
-      background: #fd844c;
-      color: white;
-    }
-    .btn-ios {
-      background: #4E7D96;
-      color: white;
-    }
-    .btn-android {
-      background: #34A853;
-      color: white;
-    }
-    .btn svg {
+    .btn-open { background: #fd844c; color: white; }
+    .btn-ios { background: #4E7D96; color: white; }
+    .btn-android { background: #34A853; color: white; }
+    .btn-icon {
+      width: 20px;
+      height: 20px;
       flex-shrink: 0;
     }
     .loading {
@@ -79,9 +72,7 @@
       font-size: 14px;
       margin-top: 16px;
     }
-    .fallback {
-      display: none;
-    }
+    .fallback { display: none; }
     .show { display: block; }
   </style>
 </head>
@@ -96,25 +87,20 @@
     <div class="fallback" id="fallback">
       <p>請先下載 App，再點擊一鍵匯入：</p>
       <a class="btn btn-open" id="openLink" href="#">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 4V20M12 4L6 10M12 4L18 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+          <path d="M12 5v14M12 5l-6 6M12 5l6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         再試一次開啟 App
       </a>
       <a class="btn btn-ios" href="https://apps.apple.com/us/app/travel-luggage-packing-list/id6749501943">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.05 20.28C16.07 21.18 15 22 13.62 22C12.24 22 11.78 21.37 10.23 21.37C8.69 21.37 8.02 22 6.75 22C5.48 22 4.46 21.23 3.5 20.28C1.71 18.36 1.17 14.93 2.87 12.38C3.77 11.03 5.16 10.18 6.64 10.08C7.22 10.04 7.86 10.38 8.53 10.58C9.2 10.78 9.63 10.98 10.24 10.98C10.85 10.98 11.39 10.73 12.05 10.53C13.02 10.24 14.2 9.8 15.11 10.2C16.77 10.94 17.9 12.33 17.89 14.12C17.88 14.5 17.54 14.7 17.24 14.89C16.85 15.13 16.47 15.37 16.47 15.88C16.47 16.5 16.89 16.82 17.3 17.13C17.52 17.29 17.75 17.46 17.75 17.76C17.75 18.56 16.82 19.12 16.13 19.67L17.05 20.28Z" fill="white"/>
-          <path d="M14.76 5.39C15.44 4.57 15.93 3.43 15.76 2.21C14.73 2.28 13.5 2.92 12.78 3.74C12.14 4.47 11.7 5.59 11.89 6.79C13.02 6.86 14.08 6.21 14.76 5.39Z" fill="white"/>
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="white">
+          <path d="M16.7 13.3c-.1-2.5 2-3.7 2.1-3.7-.8-1.1-2-1.8-3.2-1.9-1.3-.1-2.6.8-3.3.8-.7 0-1.8-.8-3-.8-1.5 0-2.9.9-3.7 2.4-1.6 2.8-.4 6.9 1.1 9.1.8 1.1 1.7 2.4 2.9 2.4 1.2 0 1.7-.8 3.2-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.3.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.6-3.8zM14.4 5.5c.7-.9 1.2-2.1 1-3.3-1 .1-2.2.7-2.9 1.6-.6.8-1.1 2.1-1 3.3 1.1.1 2.2-.6 2.9-1.6z"/>
         </svg>
         App Store 下載
       </a>
       <a class="btn btn-android" href="https://play.google.com/store/apps/details?id=com.travel.luggagelist&pcampaignid=web_share">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22.014 3.308L11.676 12.906L9.098 10.387L20.664 2.269C21.045 2.031 21.532 2.04 21.903 2.293C22.274 2.546 22.451 3.007 22.363 3.457L22.014 3.308Z" fill="white"/>
-          <path d="M2.045 3.794C2.015 3.944 2 4.099 2 4.259V19.741C2 19.901 2.015 20.056 2.045 20.206L11.966 12.023L2.045 3.794Z" fill="white"/>
-          <path d="M22.014 20.692L11.676 11.094L14.254 8.575L20.664 21.731C20.808 22.029 21.118 22.208 21.446 22.208C21.579 22.208 21.713 22.18 21.84 22.122C22.257 21.929 22.5 21.513 22.5 21.061C22.5 20.931 22.48 20.804 22.443 20.684L22.014 20.692Z" fill="white"/>
-          <path d="M12.193 13.01L2.414 22.044C2.545 22.205 2.707 22.333 2.889 22.422C3.265 22.616 3.715 22.604 4.079 22.39L15.661 15.396L12.193 13.01Z" fill="white"/>
-          <path d="M16.012 14.686L4.08 22.389C4.438 22.598 4.882 22.606 5.248 22.403L16.012 14.686Z" fill="white"/>
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="white">
+          <path d="M18.5 4.5l-9 9-3-3 9.5-7.1c.3-.2.7-.2 1 0 .3.2.5.6.4 1l.1.1zM2.5 5.5c0-.1 0-.3.1-.4l8.9 8-2.2 2.2-6.8-9.8zM18.5 19.5l-9-9 2.2-2.2 7.1 12.2c.1.3.4.5.7.5.2 0 .3 0 .5-.1.3-.2.5-.5.5-.9 0-.1 0-.2-.1-.3l-.9-.2zM10.5 13.5l-8.2 8.2c.1.1.2.2.4.3.3.2.7.1 1-.1l9.3-6-2.5-2.4zM13.5 14.5l-9.5 6.9c.3.2.7.2 1 0l8.5-5.7-2.5-2.5.5.6 1.5 1.5.5-.8z"/>
         </svg>
         Google Play 下載
       </a>
@@ -132,9 +118,7 @@
       if (gistId) {
         const deepLink = 'travelpack://import?gistId=' + encodeURIComponent(gistId);
         openLink.href = deepLink;
-
         window.location.href = deepLink;
-
         setTimeout(function() {
           loading.style.display = 'none';
           fallback.classList.add('show');
