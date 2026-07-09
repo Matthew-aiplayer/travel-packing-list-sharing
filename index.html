@@ -302,10 +302,30 @@
       localStorage.setItem('travelpack_lang', lang);
     }
 
+    function detectBrowserLang() {
+      const lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      const supported = ['zh_tw', 'zh_cn', 'zh', 'en', 'ja', 'ko', 'fr', 'es', 'de', 'hi', 'ru', 'pt', 'bn', 'th'];
+
+      if (lang.startsWith('zh-tw') || lang.startsWith('zh_hk') || lang === 'zh_tw') return 'zh_TW';
+      if (lang.startsWith('zh-cn') || lang.startsWith('zh_sg') || lang === 'zh_cn' || lang.startsWith('zh')) return 'zh_CN';
+      if (lang.startsWith('ja')) return 'ja';
+      if (lang.startsWith('ko')) return 'ko';
+      if (lang.startsWith('fr')) return 'fr';
+      if (lang.startsWith('es')) return 'es';
+      if (lang.startsWith('de')) return 'de';
+      if (lang.startsWith('hi')) return 'hi';
+      if (lang.startsWith('ru')) return 'ru';
+      if (lang.startsWith('pt')) return 'pt';
+      if (lang.startsWith('bn')) return 'bn';
+      if (lang.startsWith('th')) return 'th';
+      return 'en';
+    }
+
     (function() {
-      const savedLang = localStorage.getItem('travelpack_lang') || 'zh_TW';
-      document.getElementById('langSelect').value = savedLang;
-      switchLang(savedLang);
+      const savedLang = localStorage.getItem('travelpack_lang');
+      const defaultLang = savedLang || detectBrowserLang();
+      document.getElementById('langSelect').value = defaultLang;
+      switchLang(defaultLang);
 
       const params = new URLSearchParams(window.location.search);
       const gistId = params.get('gistId');
@@ -322,7 +342,7 @@
           fallback.classList.add('show');
         }, 2000);
       } else {
-        const t = translations[savedLang] || translations.en;
+        const t = translations[defaultLang] || translations.en;
         document.querySelector('h1').textContent = t.invalidTitle;
         document.querySelector('p').textContent = t.invalidDesc;
       }
